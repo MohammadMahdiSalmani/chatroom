@@ -1,0 +1,30 @@
+#loginform,#signupform {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+
+    p {
+        margin: 2em 0;
+    }
+
+    form {
+        input {
+            margin: 1em 0;
+
+            &[type="checkbox"]:checked + div {
+                display: flex !important;
+            }
+        }
+    
+        button {
+            margin-top: 3em;
+        }
+
+        p {
+            font-size: .8em;
+            margin-top: .5em;
+        }
+    }
+}

@@ -1,0 +1,477 @@
+::-webkit-scrollbar {
+  width: 0;
+  /* Remove scrollbar space */
+  background: transparent;
+  /* Optional: just make scrollbar invisible */
+}
+
+:disabled {
+  background-color: rgba(218, 218, 218, 0.9529411765);
+}
+
+@font-face {
+  font-family: english;
+  src: url(../font/PollyRounded-Regular.otf);
+}
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html body {
+  width: 100%;
+  overflow: hidden !important;
+  scroll-behavior: smooth;
+  font-family: english !important;
+}
+html body pre, html body textarea {
+  font-family: english !important;
+}
+html body pre {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+html body label {
+  width: 2em;
+  height: 2em;
+}
+html body section {
+  text-align: center;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%);
+  color: #f3f3f3f3;
+  padding: 0.3em;
+  margin: 0.2em;
+  border-radius: 5px;
+  background-color: rgba(27, 25, 25, 0.8745098039);
+}
+@media screen and (max-width: 415px) {
+  html body section {
+    left: 0;
+    transform: translate(0);
+    font-size: 0.8em;
+  }
+}
+
+.button {
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: #3898EC;
+  font-size: 0.7em;
+  color: #f3f3f3f3;
+  transition: all ease-in-out 200ms;
+  margin: 2em;
+  cursor: pointer;
+  text-align: center;
+  height: 5em;
+}
+.button:hover {
+  background-color: #1372c5;
+}
+@media screen and (max-width: 768px) {
+  .button {
+    height: 4em;
+  }
+}
+
+.button-clear {
+  background-color: #f3f3f3f3;
+}
+.button-clear:hover {
+  background-color: rgba(205, 205, 205, 0.9529411765);
+}
+
+.button-red {
+  background-color: #ff3463;
+}
+.button-red:hover {
+  background-color: #e70035;
+}
+
+.button-green {
+  background-color: #82c926;
+}
+.button-green:hover {
+  background-color: #58891a;
+}
+
+.link-button {
+  line-height: 5em;
+}
+@media screen and (max-width: 768px) {
+  .link-button {
+    line-height: 4em;
+  }
+}
+
+.text-box {
+  border: none;
+  height: auto;
+  outline: none;
+  padding: 0.5em;
+  padding-left: 2em;
+  font-size: 0.8em;
+  border-bottom: 2px solid #acd4f7;
+  transition: all ease 300ms;
+  resize: none;
+  margin-top: 1em;
+  border-radius: 0;
+}
+.text-box:focus {
+  border: none;
+  border-bottom: 2px solid #3898EC;
+}
+
+.alert {
+  background-color: rgba(255, 174, 24, 0.5);
+  color: #f3f3f3f3;
+  border-radius: 5px;
+  position: fixed;
+  top: 4em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 1em;
+  z-index: 1000 !important;
+}
+@media screen and (max-width: 768px) {
+  .alert {
+    background-color: #ffae18;
+    top: 7em;
+  }
+}
+
+.success-alert {
+  background-color: rgba(130, 201, 38, 0.5);
+}
+@media screen and (max-width: 768px) {
+  .success-alert {
+    background-color: #82c926;
+  }
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+@media screen and (min-width: 768px) {
+  .d-md-flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .d-xs-flex-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .d-md-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .d-xs-flex-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media screen and (max-width: 768px) {
+  .xs-hidden {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .md-hidden {
+    display: none !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .column-xs-1 {
+    width: 8.3333333333%;
+  }
+
+  .column-xs-2 {
+    width: 16.6666666667%;
+  }
+
+  .column-xs-3 {
+    width: 25%;
+  }
+
+  .column-xs-4 {
+    width: 33.3333333333%;
+  }
+
+  .column-xs-5 {
+    width: 41.6666666667%;
+  }
+
+  .column-xs-6 {
+    width: 50%;
+  }
+
+  .column-xs-7 {
+    width: 58.3333333333%;
+  }
+
+  .column-xs-8 {
+    width: 66.6666666667%;
+  }
+
+  .column-xs-9 {
+    width: 75%;
+  }
+
+  .column-xs-10 {
+    width: 83.3333333333%;
+  }
+
+  .column-xs-11 {
+    width: 91.6666666667%;
+  }
+
+  .column-xs-12 {
+    width: 100%;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .column-md-1 {
+    width: 8.3333333333%;
+  }
+
+  .column-md-2 {
+    width: 16.6666666667%;
+  }
+
+  .column-md-3 {
+    width: 25%;
+  }
+
+  .column-md-4 {
+    width: 33.3333333333%;
+  }
+
+  .column-md-5 {
+    width: 41.6666666667%;
+  }
+
+  .column-md-6 {
+    width: 50%;
+  }
+
+  .column-md-7 {
+    width: 58.3333333333%;
+  }
+
+  .column-md-8 {
+    width: 66.6666666667%;
+  }
+
+  .column-md-9 {
+    width: 75%;
+  }
+
+  .column-md-10 {
+    width: 83.3333333333%;
+  }
+
+  .column-md-11 {
+    width: 91.6666666667%;
+  }
+
+  .column-md-12 {
+    width: 100%;
+  }
+}
+.msgln {
+  margin: 1em 0;
+  background-color: #f3f3f3f3;
+  position: relative;
+  border-radius: 5px;
+  min-height: 15vh;
+}
+.msgln .user-message {
+  background-color: #f3f3f3f3;
+  text-align: left;
+  margin: 2em;
+}
+.msgln .chat-time {
+  color: #11111163;
+  padding: 0.5em;
+  text-align: right;
+}
+.msgln .user-name {
+  color: #0e0d0ddf;
+  padding: 0.5em;
+  font-weight: bolder;
+  text-align: left;
+}
+
+#message-box {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  justify-content: center;
+}
+#message-box #usermsg {
+  font-size: 16px;
+}
+#message-box label {
+  position: relative;
+  transform: translate(50%, 50%);
+}
+#message-box label span {
+  width: 1.5em;
+  height: 0.2em;
+  background-color: #0e0d0ddf;
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#message-box label span:last-of-type {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+#message-box label strong {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+
+#chatbox {
+  position: absolute;
+  padding: 1em;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 65vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+@media screen and (max-width: 768px) {
+  #chatbox {
+    height: 60vh;
+  }
+}
+
+#latest-messages {
+  position: absolute;
+  top: 65%;
+  z-index: 999;
+  justify-content: flex-end;
+}
+#latest-messages .message-button {
+  color: #0e0d0ddf;
+  border: 1px solid rgba(14, 13, 13, 0.4);
+  border-radius: 50%;
+  height: 4em;
+  width: 4em;
+  transform: rotate(90deg);
+  background-color: rgba(243, 243, 243, 0.7);
+}
+
+#loginform, #signupform {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+#loginform p, #signupform p {
+  margin: 2em 0;
+}
+#loginform form input, #signupform form input {
+  margin: 1em 0;
+}
+#loginform form input[type=checkbox]:checked + div, #signupform form input[type=checkbox]:checked + div {
+  display: flex !important;
+}
+#loginform form button, #signupform form button {
+  margin-top: 3em;
+}
+#loginform form p, #signupform form p {
+  font-size: 0.8em;
+  margin-top: 0.5em;
+}
+
+nav {
+  min-height: 4em;
+  background-color: #0e0d0ddf;
+  z-index: 1000 !important;
+}
+nav ul {
+  justify-content: flex-start !important;
+}
+nav ul div {
+  justify-content: flex-start !important;
+}
+nav ul div li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 0.3em;
+}
+nav ul div li:first-of-type a {
+  color: #f3f3f3f3 !important;
+  background-color: rgba(27, 25, 25, 0.8745098039);
+}
+nav ul div li:first-of-type a:hover {
+  background-color: #0e0d0ddf;
+}
+nav ul div li a {
+  text-decoration: none;
+  color: #0e0d0ddf !important;
+}
+
+#menu {
+  background-color: #0e0d0ddf;
+  z-index: 1000 !important;
+}
+#menu p {
+  color: #f3f3f3f3;
+}
+#menu #exit {
+  text-decoration: none;
+}
+
+/*# sourceMappingURL=style.css.map */

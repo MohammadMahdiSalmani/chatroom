@@ -1,0 +1,97 @@
+.msgln {
+    margin: 1em 0;
+    background-color: $white;
+    position: relative;
+    border-radius: 5px;
+    min-height: 15vh;
+
+    .user-message {
+        background-color: $white;
+        text-align: left;
+        margin: 2em;
+    }
+
+    .chat-time {
+        color: $shadow;
+        padding: .5em;
+        text-align: right;
+    }
+
+    .user-name {
+        color: $black;
+        padding: .5em;
+        font-weight: bolder;
+        text-align: left;
+    }
+}
+
+#message-box {
+    position: absolute;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    justify-content: center;
+
+    #usermsg {
+        font-size: 16px;
+    }
+
+    label {
+        position: relative;
+        transform: translate(50%,50%);
+
+        span {
+            width: 1.5em;
+            height: .2em;
+            background-color: $black;
+            display: inline-block;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+
+            &:last-of-type {
+                transform: translate(-50%,-50%) rotate(90deg);
+            }
+        }
+
+        strong {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            transform: translate(50%,50%);
+        }
+    }
+}
+
+#chatbox {
+    position: absolute;
+    padding: 1em;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 65vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    @media screen and (max-width: 768px) {
+        height: 60vh;
+    }
+}
+
+#latest-messages {
+    position: absolute;
+    top: 65%;
+    z-index: 999;
+    justify-content: flex-end;
+
+    .message-button {
+        color: $black;
+        border: 1px solid rgb($black, .4);
+        border-radius: 50%;
+        height: 4em;
+        width: 4em;
+        transform: rotate(90deg);
+        background-color: rgb($white, .7);
+    }
+}

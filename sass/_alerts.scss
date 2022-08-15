@@ -1,0 +1,25 @@
+.alert{
+    background-color: rgb($yellow, .5);
+    color: $white;
+    border-radius: 5px;
+    position: fixed;
+    top: 4em;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    text-align: center;
+    padding: 1em;
+    z-index: 1000 !important;
+
+    @media screen and (max-width: 768px) {
+        background-color: $yellow;
+        top: 7em;
+    }
+}
+
+.success-alert {
+    background-color: rgb($green, .5);
+
+    @media screen and (max-width: 768px) {
+        background-color: $green;
+    }
+}

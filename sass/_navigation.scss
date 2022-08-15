@@ -1,0 +1,35 @@
+nav {
+    min-height: 4em;
+    background-color: $black;
+    z-index: 1000 !important;
+
+    ul {
+        justify-content: flex-start !important;
+
+        div {
+            justify-content: flex-start !important;
+
+            li {
+                list-style-type: none;
+                display: inline-block;
+                margin: 0 .3em;
+                
+                &:first-of-type {
+                    a {
+                        color: $white !important;
+                        background-color: lighten($color: $black, $amount: 5);
+
+                        &:hover {
+                            background-color: $black;
+                        }
+                    }
+                }
+    
+                a {
+                    text-decoration: none;
+                    color: $black !important;
+                }
+            }
+        }
+    }
+}

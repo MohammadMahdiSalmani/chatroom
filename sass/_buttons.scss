@@ -1,0 +1,53 @@
+.button {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    background-color: $blue;
+    font-size: $button-font-small;
+    color: $white;
+    transition: all ease-in-out 200ms;
+    margin: 2em;
+    cursor: pointer;
+    text-align: center;
+    height: 5em;
+
+    &:hover {
+        background-color: darken($color: $blue, $amount: 15);
+    }
+
+    @media screen and (max-width: 768px) {
+        height: 4em;
+    }
+}
+
+.button-clear {
+    background-color: $white;
+
+    &:hover {
+        background-color: darken($color: $white, $amount: 15);
+    }
+}
+
+.button-red {
+    background-color: $red;
+
+    &:hover {
+        background-color: darken($color: $red, $amount: 15);
+    }
+}
+
+.button-green {
+    background-color: $green;
+
+    &:hover {
+        background-color: darken($color: $green, $amount: 15);
+    }
+}
+
+.link-button {
+    line-height: 5em;
+
+    @media screen and (max-width: 768px) {
+        line-height: 4em;
+    }
+}

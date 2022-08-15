@@ -1,0 +1,85 @@
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.d-md-flex-column {
+  @media screen and (min-width:768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.d-xs-flex-column {
+  @media screen and (max-width:768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.d-md-flex-row {
+  @media screen and (min-width:768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.d-xs-flex-row {
+  @media screen and (max-width:768px) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.hidden {
+    display: none !important;
+}
+
+.xs-hidden {
+  @media screen and (max-width: 768px) {
+      display: none !important;
+  }
+}
+
+.md-hidden {
+  @media screen and (min-width: 768px) {
+      display: none !important;
+  }
+}
+
+@mixin column($size) {
+  @for $i from 1 through 12 {
+    .column-#{$size}-#{$i} {
+      // In next version of sass it will not work and you must use math.div($i, 12) instead.
+      // Visit https://sass-lang.com/d/slash-div for more info
+      width: percentage($i/12);
+    }
+  }
+}
+
+@media only screen and (max-width:768px) {
+  @include column(xs)
+}
+
+@media only screen and (min-width:768px) {
+  @include column(md)
+}

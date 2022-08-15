@@ -1,0 +1,62 @@
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
+:disabled {
+    background-color: darken($color: $white, $amount: 10);
+}
+
+@font-face {
+    font-family: english;
+    src: url(../font/PollyRounded-Regular.otf);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    body {
+        width: 100%;
+        overflow: hidden !important;
+        scroll-behavior: smooth;
+        font-family: english !important;
+
+        pre,textarea {
+            font-family: english !important;
+        }
+
+        pre {
+            white-space: pre-wrap;
+            white-space: -moz-pre-wrap;
+            white-space: -o-pre-wrap;
+            word-wrap: break-word;
+        }
+
+        label {
+            width: 2em;
+            height: 2em;
+        }
+
+        section {
+            text-align: center;
+            position: relative;
+            left: 50%;
+            transform: translate(-50%);
+            color: $white;
+            padding: .3em;
+            margin: .2em;
+            border-radius: 5px;
+            background-color: lighten($color: $black, $amount: 5);
+
+            @media screen and (max-width: 415px) {
+                left: 0;
+                transform: translate(0);
+                font-size: $button-font-medium;
+            }
+        }
+    }
+}

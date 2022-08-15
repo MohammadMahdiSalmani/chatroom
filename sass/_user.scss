@@ -1,0 +1,12 @@
+#menu {
+    background-color: $black;
+    z-index: 1000 !important;
+
+    p {
+        color: $white;
+    }
+
+    #exit {
+        text-decoration: none;
+    }
+}
