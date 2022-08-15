@@ -75,6 +75,22 @@ function loginForm()
                 <input type="password" name="pass" id="pass" class="column-md-5 column-xs-8 text-box" placeholder="Write your password" required/>
 
                 <p class="row column-md-10 column-xs-10">Don`t have an account yet? <a href="signup.php">Sign up</a></p>
+
+                <label for="pvroom" class="row column-md-4 column-xs-10">Do you want your own private room?</label>
+                <input type="checkbox" id="privateroom">
+                <div id="privateform" class="column column-md-12 column-xs-12 hidden">
+                    <strong class="row column-md-10 column-xs-10">Private Room!</strong>
+                    <p class="row column-md-10 column-xs-10">Generate and enter your own private room code or use someone else`s private room code</p>
+                    <input type="text" name="roomcode" class="text-box column-md-5 column-xs-8" placeholder="Write private room code" autocomplete="off" required/>
+                    <input type="password" name="roompass" class="text-box column-md-5 column-xs-8" placeholder="Write private room password" autocomplete="off" required/>
+
+                    <label for="pvroom" class="row column-md-4 column-xs-10">Do you want your own private room?</label>
+                    <input type="checkbox" id="pvroom">
+                    <div class="column column-md-12 column-xs-12 hidden">
+                        <label class="row column-md-12 column-xs-12">Your private room code:<pre> </pre><strong id="pvcode"></strong></label>
+                        <label class="row column-md-12 column-xs-12">Your private room password:<pre> </pre><strong id="pvpass"></strong></label>
+                    </div>
+                </div>
             
                 <button type="submit" class="column-md-2 column-xs-5 button" name="enter" id="enter">Enter</button>
             </form>
