@@ -8,59 +8,32 @@ if (isset($_GET['logout'])) {
     file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
 
     session_destroy();
-    header("Location: index.php"); //Redirect the user
+    header("Location: index.php"); //Redirect to Login
 }
 
 if (isset($_POST['enter'])) {
-    // if(!isset($_POST['roomcode'])) {
-        $str = file_get_contents("users.json");
+    $str = file_get_contents("users.json");
 
-        $users = new RecursiveIteratorIterator(
-            new RecursiveArrayIterator(json_decode($str, true)),
-            RecursiveIteratorIterator::SELF_FIRST);
-            foreach ($users as $key => $value) {
-                if ((strtolower($_POST['name']) !== "" && strtolower($_POST['name']) == strtolower($value["name"]) && $_POST['pass'] !== "" && $_POST['pass'] == $value["pass"])) {
-                    $_SESSION['name'] = stripslashes(htmlspecialchars(strtolower($_POST['name'])));
-                    
-                    $login_message = "<section class='column-md-10 column-xs-12'><span>User @<b>" . $_SESSION['name'] . "</b> join to the chat session.</span><br></section>";
-                    file_put_contents("log.html", $login_message, FILE_APPEND | LOCK_EX);
-                } 
-                else {
-                    $_SESSION['incorrect'] = '<span class="alert column-md-6 column-xs-10">Please type in correct username and password</span>';
-                }
-            }
-    // }
-    // else {
-    //     $str = file_get_contents("users.json");
+    $users = new RecursiveIteratorIterator(
+        new RecursiveArrayIterator(json_decode($str, true)),
+        RecursiveIteratorIterator::SELF_FIRST);
 
-    //     $users = new RecursiveIteratorIterator(
-    //         new RecursiveArrayIterator(json_decode($str, true)),
-    //         RecursiveIteratorIterator::SELF_FIRST);
-    //         foreach ($users as $key => $value) {
-    //             if ((strtolower($_POST['name']) !== "" && strtolower($_POST['name']) == strtolower($value["name"]) && $_POST['pass'] !== "" && $_POST['pass'] == $value["pass"])) {
-    //                 // if($_POST['pvroomcode'] == $_POST['roomcode'] && $_POST['pvroompassword'] == $_POST['roompass'];) {
-    //                     $_SESSION['name'] = stripslashes(htmlspecialchars(strtolower($_POST['name'])));
-                    
-    //                     $login_message = "<section class='column-md-10 column-xs-12'><span>User @<b>" . $_SESSION['name'] . "</b> join to the chat session.</span><br></section>";
-    //                     file_put_contents(""+ $roomcode +".html", $login_message, FILE_APPEND | LOCK_EX);
-    //                 // }
-    //                 // else {
-    //                 //     $_SESSION['noroom'] = '<span class="alert column-md-6 column-xs-10">Your private room information is not correct :(</span>';
-    //                 //     die;
-    //                 // }
-    //             } 
-    //             else {
-    //                 $_SESSION['incorrect'] = '<span class="alert column-md-6 column-xs-10">Please type in correct username and password</span>';
-    //             }
-    //         }
-    //     }
-    // }
+    foreach ($users as $key => $value) {
+        if ((strtolower($_POST['name']) !== "" && strtolower($_POST['name']) == strtolower($value["name"]) && $_POST['pass'] !== "" && $_POST['pass'] == $value["pass"])) {
+            $_SESSION['name'] = stripslashes(htmlspecialchars(strtolower($_POST['name'])));
+
+            $login_message = "<section class='column-md-10 column-xs-12'><span>User @<b>" . $_SESSION['name'] . "</b> join to the chat session.</span><br></section>";
+            file_put_contents("log.html", $login_message, FILE_APPEND | LOCK_EX);
+        } else {
+            $_SESSION['incorrect'] = '<span class="alert column-md-6 column-xs-10">Please type in correct username and password</span>';
+        }
+    }
 }
 
 //Login form
 function loginForm()
 {
-    if(isset($_SESSION['incorrect'])){
+    if (isset($_SESSION['incorrect'])) {
         echo $_SESSION['incorrect'];
         $_SESSION['incorrect'] = '';
     }
@@ -75,7 +48,7 @@ function loginForm()
                 <input type="password" name="pass" id="pass" class="column-md-5 column-xs-8 text-box" placeholder="Write your password" required/>
 
                 <p class="row column-md-10 column-xs-10">Don`t have an account yet? <a href="signup.php">Sign up</a></p>
-            
+
                 <button type="submit" class="column-md-2 column-xs-5 button" name="enter" id="enter">Enter</button>
             </form>
         </div>';
@@ -117,11 +90,11 @@ if (!isset($_SESSION['name'])) {
 
     <div id="chatbox" class="column-md-10 column-xs-12">
         <?php
-                if (file_exists("log.html") && filesize("log.html") > 0) {
-                    $contents = file_get_contents("log.html");
-                    echo $contents;
-                }
-            ?>
+if (file_exists("log.html") && filesize("log.html") > 0) {
+        $contents = file_get_contents("log.html");
+        echo $contents;
+    }
+    ?>
     </div>
 
     <div id="latest-messages" class="row column-md-10 column-xs-12">
