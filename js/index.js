@@ -100,8 +100,8 @@ $(document).ready(function () {
     let pvroomcode = (randoddnum * evennum[Math.floor(Math.random() * evennum.length)]) + randstr1 + randsym + (randevennum * oddnum[Math.floor(Math.random() * oddnum.length)]) + randstr2 + sym[Math.floor(Math.random() * sym.length)]
     let pvroompassword = (randoddnum * evennum[Math.floor(Math.random() * evennum.length)]) + str1[Math.floor(Math.random() * str1.length)] + (randevennum * oddnum[Math.floor(Math.random() * oddnum.length)]) + str2[Math.floor(Math.random() * str2.length)]
 
-    $("#pvcode").text(pvroomcode)
-    $("#pvpass").text(pvroompassword)
+    $("#your-privateroom-code").text(pvroomcode)
+    $("#your-privateroom-password").text(pvroompassword)
 
     $.ajax({
         url: "index.php",

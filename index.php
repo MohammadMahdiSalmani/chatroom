@@ -8,54 +8,45 @@ if (isset($_GET['logout'])) {
     file_put_contents("log.html", $logout_message, FILE_APPEND | LOCK_EX);
 
     session_destroy();
-    header("Location: index.php"); //Redirect the user
+    header("Location: index.php"); //Redirect to Login
 }
 
 if (isset($_POST['enter'])) {
-    // if(!isset($_POST['roomcode'])) {
-        $str = file_get_contents("users.json");
+    // Check user
+    $str = file_get_contents("users.json");
+    $users = new RecursiveIteratorIterator(
+        new RecursiveArrayIterator(json_decode($str, true)),
+        RecursiveIteratorIterator::SELF_FIRST);
 
-        $users = new RecursiveIteratorIterator(
-            new RecursiveArrayIterator(json_decode($str, true)),
-            RecursiveIteratorIterator::SELF_FIRST);
-            foreach ($users as $key => $value) {
-                if ((strtolower($_POST['name']) !== "" && strtolower($_POST['name']) == strtolower($value["name"]) && $_POST['pass'] !== "" && $_POST['pass'] == $value["pass"])) {
+    foreach ($users as $key => $value) {
+        if (((strtolower($_POST['name']) !== "" && strtolower($_POST['name']) == strtolower($value["name"])) && ($_POST['pass'] !== "" && $_POST['pass'] == $value["pass"]))) {
+            if($_POST['privateroom'] == "privateroom") { 
+                if(($_POST['privateroom-code'] == $_POST['your-privateroom-code']) && ($_POST['privateroom-password'] == $_POST['your-privateroom-password'])) {
                     $_SESSION['name'] = stripslashes(htmlspecialchars(strtolower($_POST['name'])));
-                    
+                
                     $login_message = "<section class='column-md-10 column-xs-12'><span>User @<b>" . $_SESSION['name'] . "</b> join to the chat session.</span><br></section>";
-                    file_put_contents("log.html", $login_message, FILE_APPEND | LOCK_EX);
-                } 
+                    file_put_contents(""+$_POST['your-privateroom-code']+".html", $login_message, FILE_APPEND | LOCK_EX);
+                    header("Location:"+$_POST['your-privateroom-code']+".html"); //Redirect to Private ChatRoom
+                }
                 else {
-                    $_SESSION['incorrect'] = '<span class="alert column-md-6 column-xs-10">Please type in correct username and password</span>';
+                    $_SESSION['noroom'] = '<span class="alert column-md-6 column-xs-10">Your private room information is not correct :(</span>';
+                    header("Location: index.php"); //Redirect to Login
+                    die;
                 }
             }
-    // }
-    // else {
-    //     $str = file_get_contents("users.json");
+            else { // Join to Global ChatRoom
+                $_SESSION['name'] = stripslashes(htmlspecialchars(strtolower($_POST['name'])));
 
-    //     $users = new RecursiveIteratorIterator(
-    //         new RecursiveArrayIterator(json_decode($str, true)),
-    //         RecursiveIteratorIterator::SELF_FIRST);
-    //         foreach ($users as $key => $value) {
-    //             if ((strtolower($_POST['name']) !== "" && strtolower($_POST['name']) == strtolower($value["name"]) && $_POST['pass'] !== "" && $_POST['pass'] == $value["pass"])) {
-    //                 // if($_POST['pvroomcode'] == $_POST['roomcode'] && $_POST['pvroompassword'] == $_POST['roompass'];) {
-    //                     $_SESSION['name'] = stripslashes(htmlspecialchars(strtolower($_POST['name'])));
-                    
-    //                     $login_message = "<section class='column-md-10 column-xs-12'><span>User @<b>" . $_SESSION['name'] . "</b> join to the chat session.</span><br></section>";
-    //                     file_put_contents(""+ $roomcode +".html", $login_message, FILE_APPEND | LOCK_EX);
-    //                 // }
-    //                 // else {
-    //                 //     $_SESSION['noroom'] = '<span class="alert column-md-6 column-xs-10">Your private room information is not correct :(</span>';
-    //                 //     die;
-    //                 // }
-    //             } 
-    //             else {
-    //                 $_SESSION['incorrect'] = '<span class="alert column-md-6 column-xs-10">Please type in correct username and password</span>';
-    //             }
-    //         }
-    //     }
-    // }
+                $login_message = "<section class='column-md-10 column-xs-12'><span>User @<b>" . $_SESSION['name'] . "</b> join to the chat session.</span><br></section>";
+                file_put_contents("log.html", $login_message, FILE_APPEND | LOCK_EX);
+            }
+        } 
+        else {
+            $_SESSION['incorrect'] = '<span class="alert column-md-6 column-xs-10">Please type in correct username and password</span>';
+        }
+    }
 }
+    
 
 //Login form
 function loginForm()
@@ -63,6 +54,10 @@ function loginForm()
     if(isset($_SESSION['incorrect'])){
         echo $_SESSION['incorrect'];
         $_SESSION['incorrect'] = '';
+    }
+    elseif(isset($_SESSION['noroom'])){
+        echo $_SESSION['noroom'];
+        $_SESSION['noroom'] = '';
     }
 
     echo
@@ -76,19 +71,19 @@ function loginForm()
 
                 <p class="row column-md-10 column-xs-10">Don`t have an account yet? <a href="signup.php">Sign up</a></p>
 
-                <label for="pvroom" class="row column-md-4 column-xs-10">Do you want your own private room?</label>
-                <input type="checkbox" id="privateroom">
+                <label for="privateroom" class="row column-md-4 column-xs-10">Do you want your own private room?</label>
+                <input type="checkbox" id="privateroom" name="privateroom" value="privateroom">
                 <div id="privateform" class="column column-md-12 column-xs-12 hidden">
                     <strong class="row column-md-10 column-xs-10">Private Room!</strong>
                     <p class="row column-md-10 column-xs-10">Generate and enter your own private room code or use someone else`s private room code</p>
-                    <input type="text" name="roomcode" class="text-box column-md-5 column-xs-8" placeholder="Write private room code" autocomplete="off" required/>
-                    <input type="password" name="roompass" class="text-box column-md-5 column-xs-8" placeholder="Write private room password" autocomplete="off" required/>
+                    <input type="text" name="privateroom-code" class="text-box column-md-5 column-xs-8" placeholder="Write private room code" autocomplete="off" required/>
+                    <input type="password" name="privateroom-password" class="text-box column-md-5 column-xs-8" placeholder="Write private room password" autocomplete="off" required/>
 
-                    <label for="pvroom" class="row column-md-4 column-xs-10">Do you want your own private room?</label>
-                    <input type="checkbox" id="pvroom">
+                    <label for="your-privateroom" class="row column-md-4 column-xs-10">Do you want your own private room?</label>
+                    <input type="checkbox" id="your-privateroom" name="your-privateroom" value="your-privateroom">
                     <div class="column column-md-12 column-xs-12 hidden">
-                        <label class="row column-md-12 column-xs-12">Your private room code:<pre> </pre><strong id="pvcode"></strong></label>
-                        <label class="row column-md-12 column-xs-12">Your private room password:<pre> </pre><strong id="pvpass"></strong></label>
+                        <label class="row column-md-12 column-xs-12">Your private room code:<pre> </pre><strong id="your-privateroom-code"></strong></label>
+                        <label class="row column-md-12 column-xs-12">Your private room password:<pre> </pre><strong id="your-privateroom-password"></strong></label>
                     </div>
                 </div>
             
